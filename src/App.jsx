@@ -1,5 +1,3 @@
-import { Canvas } from "@react-three/fiber"
-import Cylinder3d from "./Cylinder3d"
 import kitty from './assets/kitty.png'
 import bg from './assets/bg.png'
 import cake1 from './assets/cake1.png'
