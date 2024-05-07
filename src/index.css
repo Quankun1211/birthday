@@ -25,7 +25,7 @@
   box-shadow: 0 3px 45px -8px #fff;
 }
 .bg-cloud{
-  background: linear-gradient(120deg, #fffdfe, #ffeaf9);
+  background: linear-gradient(120deg, #f4dbe7, #ffa4e4);
   box-shadow: 0 3px 45px -8px #fff;
 }
 .parent{
@@ -81,7 +81,7 @@
   border-radius: 50%;
 }
 .bg-color{
-  background: linear-gradient(120deg, #d627a5, #f2b6e1);
+  background: linear-gradient(120deg, #d62730, #ffd6de);
   opacity: 0.98;
 }
 .bg-color-2{
@@ -125,6 +125,7 @@
   text-align: center;
 }
 .main-day{
+  color: rgb(255, 255, 255);
   font-family: "Comic Sans MS", "Comic Sans", cursive
 }
 .ballon-1{
@@ -218,7 +219,7 @@
 .content-2{
   transform: scaleX(-1);
   right: 20%;
-  width: 20%;
+  width: 23%;
   bottom: 10%;
 }
 .drop-light{
@@ -408,7 +409,7 @@
   top: 40%;
 }
 .u5{
-  top: 60%;
+  top: 50%;
   left: 47%;
 }
 
@@ -422,4 +423,7 @@
   50% { transform: translateY(-10%) }
   75% { transform: translateY(5%) }
   100% { transform: translateY(0) }
+}
+.animation {
+  animation: rotate 1s linear infinite;
 }

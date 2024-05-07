@@ -12,7 +12,9 @@ import u3 from './assets/u3.png'
 import u4 from './assets/u4.png'
 import u5 from './assets/u5.png'
 import bgFlower from './assets/bgFlower.png'
+import letter from './assets/letter.png'
 import song from './audio/song.mp3'
+import Typed from 'typed.js'
 import { useEffect, useRef, useState } from "react"
 
 function App() {
@@ -41,7 +43,6 @@ function App() {
   const [width, setWidth] = useState(40)
   const [width1, setWidth1] = useState(40)
   const noRef = useRef()
-  let i = 0
   const handleSetWidth = () => {
     if(width1 < 80) {
       setWidth1(width1 + 10)
@@ -50,10 +51,34 @@ function App() {
       noRef.current.classList.add('hidden')
     }
   }
+  
+  const aniRef = useRef()
+  const handleOver = () => {
+    aniRef.current.classList.add('animation')
+  }
+  const handleRemoveOver = () => {
+    aniRef.current.classList.remove('animation')
+  }
+  const handleToggle = () => {
+    document.getElementById('my_modal_1').showModal()
+    setType(!type)
+  }
+  const el = useRef(null)
+  const [type, setType] = useState(true)
+  useEffect(() => {
+    const typed = new Typed(el.current, {
+      strings: ['Mỗi sớm mai thức giấc chúng ta lại có thêm niềm hy vọng và những giấc mơ mới. Cùng cố gắng mỗi ngày để chạm tới ước mơ nhé! </br> Chú mèo lười của mẹ nhanh chóng dậy đi học thôi nào. Hôm nay là một ngày đẹp trời, vì vậy nên mẹ hi vọng con sẽ có những buổi học thú vị và chơi đùa cùng với những người bạn thật vui vẻ con nhé. Chúc con có một ngày học tập thuận lợi và đạt kết quả cao nhé. </br>  Chúc bạn một buổi sáng tốt lành, một ngày mới vui vẻ. Tôi hy vọng bạn sẽ chào đón ngày mới bằng nụ cười tuyệt vời trên khuôn mặt của bạn.</br> Chúc mừng sinh nhật! Mỗi ngày với bạn là một ngày đáng nhớ, và tôi mong rằng bạn sẽ có nhiều kỷ niệm tuyệt vời hơn trong năm nay. </br> Sinh nhật vui vẻ, mỗi ngày lượm được cục tiền, mỗi tuần lượm được túi tiền, mỗi tháng lượm được va li tiền, mỗi năm ôm tiền mà ngủ.'],
+      typeSpeed: 30,
+    });
+
+    return () => {
+      typed.destroy();
+    };
+  }, [type])
 
 
   return (
-      <div className="h-screen bg-img bg-pink-200 flex items-center justify-center">
+      <div className={`h-screen w-screen bg-img bg-pink-200 flex items-center justify-center`}>
       <div className={`bg-gradient ${theme} w-10/12 h-5/6 rounded-xl parent`}>
         <img src={bg} className="ballon-2"/>
         <div className="group-cloud">
@@ -64,9 +89,9 @@ function App() {
           <h1 className="text-4xl font-extrabold text-gray-700">HAPPY</h1>
           <h1 className="text-4xl font-extrabold text-black ">BIRTHDAY</h1>
           <h1 className="text-4xl font-extrabold text-black ">TO YOU</h1>
-          <div className="gr-btn my-6 w-8/12">
+          <div className="gr-btn my-6 w-8/12 flex justify-center">
             <label className="h-full text-xl btn btn-error mx-2" style={{width: `${width1}%`}} htmlFor="my_modal_6">
-              Nhận lời chúc
+              Mở quà
             </label>
             <button ref={noRef} onClick={handleSetWidth} className="h-full text-xl btn btn-error mx-2" style={{width: `${width}%`}}>Không nhận</button>
           </div>
@@ -131,10 +156,13 @@ function App() {
           <li></li>
           <li></li>
         </ul>
+
+
+
       </div>
 
       <img src={firework} className="absolute firework" alt="" />  
-      <div className="main-day right-60 top-40 absolute text-red-700 drop-shadow-2xl text-5xl font-extrabold">12 : 06 : 2024</div>
+      <div className="main-day right-64 top-40 absolute text-red-700 drop-shadow-2xl text-5xl font-extrabold">12 : 06 : 2024</div>
       <img src={cake1} className="absolute w-60 bottom-32 cake" alt="" />
       <img src={u1} className={`absolute w-60 bottom-32 u1 ${dance}`} alt="" />
       <img src={u2} className={`absolute w-60 bottom-32 u2 ${dance}`} alt="" />
@@ -154,6 +182,10 @@ function App() {
             </div>
           </div>
         </div>
+
+        <button className="absolute top-14  w-1/12 " onClick={handleToggle}>
+          <img src={letter} ref={aniRef} onMouseLeave={handleRemoveOver} className='' onMouseOver={handleOver}  alt="" />
+        </button>
 
         <audio ref={audio} src={song}></audio>
 
@@ -177,6 +209,21 @@ function App() {
 
           </div>
         </div>
+
+        <dialog id="my_modal_1" className="modal">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">Hello!</h3>
+            <p className="py-4 text-center">
+              <span ref={el}></span>
+            </p>
+            <div className="modal-action">
+              <form method="dialog">
+                <button className="btn">Close</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
+
     </div>
   )
 }
