@@ -4,7 +4,6 @@ import cake1 from './assets/cake1.png'
 import content1 from './assets/content1.jpg'
 import firework from './assets/firework.png'
 import content2 from './assets/content2.png'
-import idol1 from './assets/idol1.png'
 import idol2 from './assets/idol2.png'
 import u1 from './assets/u1.png'
 import u2 from './assets/u2.png'
@@ -25,12 +24,22 @@ function App() {
   const [mute, setMute] = useState('block')
   const [volume, setVolume] = useState('hidden')
   const [dance, setDance] = useState('')
+  const [width, setWidth] = useState(40)
+  const [width1, setWidth1] = useState(40)
+  const [chatable, setChatalbe] = useState('hidden')
+  const [type, setType] = useState(true)
+  const [idolTyped, setIdolTyped] = useState(true)
+  const itemList = document.querySelectorAll('.item-list')
 
   const audio = useRef()
+  const noRef = useRef()
+  const aniRef = useRef()
+  const el = useRef(null)
+  const el1 = useRef(null)
 
   const handleTheme = () => {
     setClould(cloud === "bg-cloud" ? "bg-cloud-2" : "bg-cloud")
-    setDrop(drop === 'drop-light' ? "drop-dark" : "drop-light")
+    setDrop(drop === 'drop-light' ? "shadow" : "drop-light")
     setTheme(theme === 'bg-color' ? 'bg-color-2' : 'bg-color')
     setHidden(theme === 'bg-color' ? 'strand' : 'hidden-cf')
   }
@@ -40,9 +49,6 @@ function App() {
     mute === 'block' ? audio.current.play() : audio.current.pause()
     setDance(mute === 'block' ? 'dance' : '')
   }
-  const [width, setWidth] = useState(40)
-  const [width1, setWidth1] = useState(40)
-  const noRef = useRef()
   const handleSetWidth = () => {
     if(width1 < 80) {
       setWidth1(width1 + 10)
@@ -52,7 +58,6 @@ function App() {
     }
   }
   
-  const aniRef = useRef()
   const handleOver = () => {
     aniRef.current.classList.add('animation')
   }
@@ -63,21 +68,11 @@ function App() {
     document.getElementById('my_modal_1').showModal()
     setType(!type)
   }
-
-  const chat = document.querySelector('.chat-cf1')
-
   const idolText = () => {
+    setChatalbe(chatable === 'hidden' ? 'fixed' : 'hidden')
     setIdolTyped(!idolTyped)
-    chat.classList.remove('hidden')
-    chat.classList.add('fixed')
   }
-  const closeChat = () => {
-    chat.classList.add('hidden')
-    chat.classList.remove('fixed')
-  }
-  const el = useRef(null)
-  const el1 = useRef(null)
-  const [type, setType] = useState(true)
+
   useEffect(() => {
     const typed = new Typed(el.current, {
       strings: ['Mỗi sớm mai thức giấc chúng ta lại có thêm niềm hy vọng và những giấc mơ mới. Cùng cố gắng mỗi ngày để chạm tới ước mơ nhé! </br> Chú mèo lười của mẹ nhanh chóng dậy đi học thôi nào. Hôm nay là một ngày đẹp trời, vì vậy nên mẹ hi vọng con sẽ có những buổi học thú vị và chơi đùa cùng với những người bạn thật vui vẻ con nhé. Chúc con có một ngày học tập thuận lợi và đạt kết quả cao nhé. </br>  Chúc bạn một buổi sáng tốt lành, một ngày mới vui vẻ. Tôi hy vọng bạn sẽ chào đón ngày mới bằng nụ cười tuyệt vời trên khuôn mặt của bạn.</br> Chúc mừng sinh nhật! Mỗi ngày với bạn là một ngày đáng nhớ, và tôi mong rằng bạn sẽ có nhiều kỷ niệm tuyệt vời hơn trong năm nay. </br> Sinh nhật vui vẻ, mỗi ngày lượm được cục tiền, mỗi tuần lượm được túi tiền, mỗi tháng lượm được va li tiền, mỗi năm ôm tiền mà ngủ.'],
@@ -88,8 +83,6 @@ function App() {
       typed.destroy();
     };
   }, [type])
-
-  const [idolTyped, setIdolTyped] = useState(true)
 
   useEffect(() => {
     const typed = new Typed(el1.current, {
@@ -102,7 +95,6 @@ function App() {
     };
   }, [idolTyped])
 
-  const itemList = document.querySelectorAll('.item-list')
   for(let i = 0;i<itemList.length;i++){
     itemList[i].onmouseover = () => {
       itemList[i].classList.add('dance-forced') 
@@ -125,7 +117,7 @@ function App() {
           <h1 className="text-4xl font-extrabold text-black ">BIRTHDAY</h1>
           <h1 className="text-4xl font-extrabold text-black ">TO YOU</h1>
           <div className="gr-btn my-6 w-8/12 flex justify-center">
-            <label className="h-full text-xl btn btn-error mx-2" style={{width: `${width1}%`}} htmlFor="my_modal_6">
+            <label className="h-full text-xl btn btn-error mx-2" style={{width: `${width1}%`}} onClick={() => document.getElementById('my_modal_5').showModal()}>
               Mở quà
             </label>
             <button ref={noRef} onClick={handleSetWidth} className="h-full text-xl btn btn-error mx-2" style={{width: `${width}%`}}>Không nhận</button>
@@ -223,32 +215,28 @@ function App() {
         </button>
 
         <audio ref={audio} src={song}></audio>
-
-        <input type="checkbox" id="my_modal_6" className="modal-toggle" />
-        <div className="modal w-full" role="dialog">
-          <div className="flex items-center justify-center">
-            <div className="w-10/12 rounded-lg bg-modal p-10 overflow-hidden relative">
-              <h1 className="text-center text-3xl font-mono font-extrabold">HAPPY BIRTHDAY TO YOU</h1>
-              <h1 className="text-center text-3xl font-mono font-extrabold">CÁI GÌ CŨNG CHÚC !!</h1>
-              <img src={bgFlower} className="absolute w-full top-0 left-0" alt="" />
+        <dialog id="my_modal_5" className="modal">
+          <div className="modal-box w-11/12 max-w-5xl relative">
+              <h1 className="text-center text-3xl font-mono font-extrabold">HAPPY BIRTHDAY HÀ VYYY !!</h1>
+              <img src={bgFlower} className="absolute w-full h-full top-0 left-0" alt="" />
               
-              <div className="idol mb-20 flex justify-around relative">
-                <img src={idol1} className="idol-cf mx-2" alt="" />
-                <img onClick={idolText} src={idol2} className="idol-cf mx-2" alt="" />
-                
-
-                <div className={`chat chat-end hidden chat-cf1`}>
-                  <div className="chat-bubble chat-bubble-primary font-mono font-semibold text-2xl">
+              <div className="idol mb-28 relative flex justify-center">
+                <img onClick={idolText} src={idol2} className="idol-cf" alt="" />
+                <div className={`chat chat-end chat-cf1 ${chatable} fixed`}>
+                  <div className="chat-bubble chat-bubble-accent font-mono font-semibold text-2xl">
                     <span ref={el1}></span>
                   </div>
                 </div>
               </div>
 
-              <label htmlFor="my_modal_6" onClick={closeChat} className="btn absolute bottom-3 left-2/4 btn-primary">Close!</label>
-            </div>
-
+              <div className="modal-action close absolute">
+                <form method="dialog">
+                  <button className="btn btn-secondary w-24 text-xl">Close</button>
+                </form>
+              </div>
+               
           </div>
-        </div>
+        </dialog>
 
         <dialog id="my_modal_1" className="modal">
           <div className="modal-box">
