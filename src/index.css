@@ -386,6 +386,11 @@
   left: 25%;
   bottom: 50%;
 }
+.chat-cf1{
+  bottom: 50%;
+  width: 20%;
+  z-index: 2;
+}
 .idol-cf{
   width: 30%;
 }

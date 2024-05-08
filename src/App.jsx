@@ -63,7 +63,20 @@ function App() {
     document.getElementById('my_modal_1').showModal()
     setType(!type)
   }
+
+  const chat = document.querySelector('.chat-cf1')
+
+  const idolText = () => {
+    chat.classList.remove('hidden')
+    chat.classList.add('fixed')
+    setIdolTyped(!idolTyped)
+  }
+  const closeChat = () => {
+    chat.classList.add('hidden')
+    chat.classList.remove('fixed')
+  }
   const el = useRef(null)
+  const el1 = useRef(null)
   const [type, setType] = useState(true)
   useEffect(() => {
     const typed = new Typed(el.current, {
@@ -75,6 +88,19 @@ function App() {
       typed.destroy();
     };
   }, [type])
+
+  const [idolTyped, setIdolTyped] = useState(true)
+
+  useEffect(() => {
+    const typed = new Typed(el1.current, {
+      strings: ['안녕하세요, 변우석입니다. 생일 축하해요 </br> (Chào em, anh là Woo Seok Byeon. Chúc em sinh nhật vui vẻ nhé !!!)'],
+      typeSpeed: 150,
+    });
+
+    return () => {
+      typed.destroy();
+    };
+  }, [idolTyped])
 
   const itemList = document.querySelectorAll('.item-list')
 
@@ -207,16 +233,21 @@ function App() {
             <div className="w-10/12 rounded-lg bg-modal p-10 overflow-hidden relative">
               <h1 className="text-center text-3xl font-mono font-extrabold">HAPPY BIRTHDAY TO YOU</h1>
               <h1 className="text-center text-3xl font-mono font-extrabold">CÁI GÌ CŨNG CHÚC !!</h1>
+              <img src={bgFlower} className="absolute w-full top-0 left-0" alt="" />
+              
               <div className="idol mb-20 flex justify-around relative">
                 <img src={idol1} className="idol-cf mx-2" alt="" />
-                <img src={idol2} className="idol-cf mx-2" alt="" />
-                <div className="chat chat-start absolute chat-cf">
-                  <div className="chat-bubble chat-bubble-primary  font-mono font-semibold text-2xl">Say hjjj</div>
+                <img onClick={idolText} src={idol2} className="idol-cf mx-2" alt="" />
+                
+
+                <div className={`chat chat-end hidden chat-cf1`}>
+                  <div className="chat-bubble chat-bubble-primary font-mono font-semibold text-2xl">
+                    <span ref={el1}></span>
+                  </div>
                 </div>
               </div>
 
-              <img src={bgFlower} className="absolute w-full top-0 left-0" alt="" />
-              <label htmlFor="my_modal_6" className="btn absolute bottom-3 left-2/4 btn-primary">Close!</label>
+              <label htmlFor="my_modal_6" onClick={closeChat} className="btn absolute bottom-3 left-2/4 btn-primary">Close!</label>
             </div>
 
           </div>
