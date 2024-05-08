@@ -76,6 +76,18 @@ function App() {
     };
   }, [type])
 
+  const itemList = document.querySelectorAll('.item-list')
+
+  for(let i = 0;i<itemList.length;i++){
+    itemList[i].onmouseover = () => {
+      console.log(1);
+      itemList[i].classList.add('dance-forced')
+    }
+    itemList[i].onmouseleave = () => {
+      itemList[i].classList.remove('dance-forced')  
+    }
+  }
+
 
   return (
       <div className={`h-screen w-screen bg-img bg-pink-200 flex items-center justify-center`}>
@@ -164,11 +176,11 @@ function App() {
       <img src={firework} className="absolute firework" alt="" />  
       <div className="main-day right-64 top-40 absolute text-red-700 drop-shadow-2xl text-5xl font-extrabold">12 : 06 : 2024</div>
       <img src={cake1} className="absolute w-60 bottom-32 cake" alt="" />
-      <img src={u1} className={`absolute w-60 bottom-32 u1 ${dance}`} alt="" />
-      <img src={u2} className={`absolute w-60 bottom-32 u2 ${dance}`} alt="" />
-      <img src={u3} className={`absolute w-60 bottom-32 u3 ${dance}`} alt="" />
-      <img src={u4} className={`absolute w-60 bottom-32 u4 ${dance}`} alt="" />
-      <img src={u5} className={`absolute w-60 bottom-32 u5 ${dance}`} alt="" />
+      <img src={u1} className={`absolute w-60 bottom-32 u1 item-list ${dance}`} alt="" />
+      <img src={u2} className={`absolute w-60 bottom-32 u2 item-list ${dance}`} alt="" />
+      <img src={u3} className={`absolute w-60 bottom-32 u3 item-list ${dance}`} alt="" />
+      <img src={u4} className={`absolute w-60 bottom-32 u4 item-list ${dance}`} alt="" />
+      <img src={u5} className={`absolute w-60 bottom-32 u5 item-list ${dance}`} alt="" />
       <img src={content2} className={`absolute w-60 bottom-32 ${drop} content-2`} alt="" />
         <div className="child3 ml-8">
           <div className="flip-box">
@@ -190,9 +202,9 @@ function App() {
         <audio ref={audio} src={song}></audio>
 
         <input type="checkbox" id="my_modal_6" className="modal-toggle" />
-        <div className="modal w-full " role="dialog">
+        <div className="modal w-full" role="dialog">
           <div className="flex items-center justify-center">
-            <div className="w-10/12 rounded-lg bg-slate-900 p-10 overflow-hidden relative">
+            <div className="w-10/12 rounded-lg bg-modal p-10 overflow-hidden relative">
               <h1 className="text-center text-3xl font-mono font-extrabold">HAPPY BIRTHDAY TO YOU</h1>
               <h1 className="text-center text-3xl font-mono font-extrabold">CÁI GÌ CŨNG CHÚC !!</h1>
               <div className="idol mb-20 flex justify-around relative">
