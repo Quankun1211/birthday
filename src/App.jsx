@@ -67,9 +67,9 @@ function App() {
   const chat = document.querySelector('.chat-cf1')
 
   const idolText = () => {
+    setIdolTyped(!idolTyped)
     chat.classList.remove('hidden')
     chat.classList.add('fixed')
-    setIdolTyped(!idolTyped)
   }
   const closeChat = () => {
     chat.classList.add('hidden')
@@ -103,17 +103,14 @@ function App() {
   }, [idolTyped])
 
   const itemList = document.querySelectorAll('.item-list')
-
   for(let i = 0;i<itemList.length;i++){
     itemList[i].onmouseover = () => {
-      console.log(1);
-      itemList[i].classList.add('dance-forced')
+      itemList[i].classList.add('dance-forced') 
     }
     itemList[i].onmouseleave = () => {
       itemList[i].classList.remove('dance-forced')  
     }
   }
-
 
   return (
       <div className={`h-screen w-screen bg-img bg-pink-200 flex items-center justify-center`}>
