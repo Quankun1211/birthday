@@ -49,11 +49,12 @@ function App() {
     mute === 'block' ? audio.current.play() : audio.current.pause()
     setDance(mute === 'block' ? 'dance' : '')
   }
+  console.log(width1);
   const handleSetWidth = () => {
     if(width1 < 80) {
       setWidth1(width1 + 10)
       setWidth(width - 10)
-    } else if(width1 >= 80) {
+    } else if(width1 >= 70) {
       noRef.current.classList.add('hidden')
     }
   }
@@ -87,7 +88,7 @@ function App() {
   useEffect(() => {
     const typed = new Typed(el1.current, {
       strings: ['안녕하세요, 변우석입니다. 생일 축하해요 </br> (Chào em, anh là Woo Seok Byeon. Chúc em sinh nhật vui vẻ nhé !!!)'],
-      typeSpeed: 150,
+      typeSpeed: 100,
     });
 
     return () => {
@@ -217,7 +218,7 @@ function App() {
         <audio ref={audio} src={song}></audio>
         <dialog id="my_modal_5" className="modal">
           <div className="modal-box w-11/12 max-w-5xl relative">
-              <h1 className="text-center text-3xl font-mono font-extrabold">HAPPY BIRTHDAY HÀ VYYY !!</h1>
+              <h1 className="text-center text-3xl font-mono font-extrabold">HAPPY BIRTHDAY HA VYYY !!</h1>
               <img src={bgFlower} className="absolute w-full h-full top-0 left-0" alt="" />
               
               <div className="idol mb-28 relative flex justify-center">
