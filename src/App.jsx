@@ -49,7 +49,6 @@ function App() {
     mute === 'block' ? audio.current.play() : audio.current.pause()
     setDance(mute === 'block' ? 'dance' : '')
   }
-  console.log(width1);
   const handleSetWidth = () => {
     if(width1 < 80) {
       setWidth1(width1 + 10)
@@ -58,7 +57,6 @@ function App() {
       noRef.current.classList.add('hidden')
     }
   }
-  
   const handleOver = () => {
     aniRef.current.classList.add('animation')
   }
@@ -87,7 +85,7 @@ function App() {
 
   useEffect(() => {
     const typed = new Typed(el1.current, {
-      strings: ['안녕하세요, 변우석입니다. 생일 축하해요 </br> (Chào em, anh là Woo Seok Byeon. Chúc em sinh nhật vui vẻ nhé !!!)'],
+      strings: ['안녕하세요 Im Sol Vy. 저는 Ryu Sun Jae (Byun Woo Seok)입니다. 생일 축하해요 !! </br> (Chào Im Sol Vy, anh là Ryu Sun Jae (Byun Woo Seok). Chúc em sinh nhật vui vẻ nhé !!!)'],
       typeSpeed: 100,
     });
 
