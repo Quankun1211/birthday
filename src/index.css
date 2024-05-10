@@ -9,6 +9,10 @@
   animation: kitty 30s linear infinite;
   position: relative;
 }
+.bg-theme2{
+  background-color: #1d1243;
+}
+
 .child3{
   position: absolute;
   top: 2%;
@@ -16,7 +20,7 @@
 }
 
 .bg-cloud-2{
-  background: linear-gradient(120deg, #ffc8ce, #e96d7b);
+  background: linear-gradient(120deg, #febac2, #e96d7b);
   box-shadow: 0 3px 45px -8px #fff;
 }
 .bg-cloud{
