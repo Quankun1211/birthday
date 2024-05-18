@@ -196,7 +196,7 @@ function App() {
 
       <img src={firework} className="absolute firework" alt="" />  
       <div className="main-day right-64 top-40 absolute text-red-700 drop-shadow-2xl text-5xl font-extrabold">12 : 06 : 2024</div>
-      <div onClick={notify} className="cake-cf">
+      <div className="cake-cf">
         <img src={cake1} className="absolute w-60 bottom-32 cake" alt="" />
         <Toaster toastOptions={{
           style: {
