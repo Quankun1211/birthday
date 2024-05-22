@@ -12,9 +12,12 @@ import u4 from './assets/u4.png'
 import u5 from './assets/u5.png'
 import bgFlower from './assets/bgFlower.png'
 import letter from './assets/letter.png'
+import bow from './assets/bow.png'
+import memeimg from './assets/meme.png'
 import song from './audio/song.mp3'
 import Typed from 'typed.js'
 import { useEffect, useRef, useState } from "react"
+import $ from 'jquery'
 import toast, { Toaster } from 'react-hot-toast'
 
 function App() {
@@ -31,13 +34,23 @@ function App() {
   const [chatable, setChatalbe] = useState('hidden')
   const [type, setType] = useState(true)
   const [idolTyped, setIdolTyped] = useState(true)
+  const [starText, setStarText] = useState(true)
   const itemList = document.querySelectorAll('.item-list')
+  const [time, setTime] = useState('block')
+  const [mem, setMem] = useState('hidden')
+  const [time2, setTime2] = useState('hidden')
+  const [h, setH] = useState('hidden')
 
   const audio = useRef()
   const noRef = useRef()
   const aniRef = useRef()
   const el = useRef(null)
   const el1 = useRef(null)
+  const el2 = useRef(null)
+
+  const text = ["Hello vy nha =))", "A nhon sê ooooo !!!", "Goodmorningg !!"]
+  const i = Math.floor(Math.random() * text.length)
+  const context = text[i]
 
   const handleTheme = () => {
     setClould(cloud === "bg-cloud" ? "bg-cloud-2" : "bg-cloud")
@@ -74,12 +87,19 @@ function App() {
     setChatalbe(chatable === 'hidden' ? 'fixed' : 'hidden')
     setIdolTyped(!idolTyped)
   }
-  const notify = () => toast(
-    "DỰ ÁN SIÊU SIÊU ĐẶC BIỆT!!.\n\nNgày khởi công: 03/05/2024.\n\nNgày gửi: 12/06/2024.\n\nThời gian: 00h05p.\n\nThời gian dự kiến nhân vật chính đọc được: 00h08p - 00h12p.",
-    {
-      duration: 8000,
-    }
-  )
+  const handleStar = () => {
+    setTime('hidden')
+    setTime2('block')
+    setStarText(!starText)
+  }
+  const handleStar1 = () => {
+    setTime2('hidden')
+    setH('')
+  }
+  const meme = () => {
+    setTime2('hidden')
+    setMem('block')
+  }
 
   useEffect(() => {
     const typed = new Typed(el.current, {
@@ -103,6 +123,18 @@ function App() {
     };
   }, [idolTyped])
 
+  useEffect(() => {
+    const typed = new Typed(el2.current, {
+      strings: ['Cũng không biết làm gì nên làm cái này làm quà, nhận quà nhaa =))'],
+      typeSpeed: 100,
+      cursorChar: ''
+    });
+
+    return () => {
+      typed.destroy();
+    };
+  }, [starText])
+
   for(let i = 0;i<itemList.length;i++){
     itemList[i].onmouseover = () => {
       itemList[i].classList.add('dance-forced') 
@@ -113,11 +145,22 @@ function App() {
   }
 
   return (
-      <div className={`h-screen w-screen bg-img ${bgTheme} flex items-center justify-center`}>
-      <div className={`bg-gradient ${theme} w-10/12 h-5/6 rounded-xl parent`}>
+      <div className={`h-screen w-screen bg-img flex items-center justify-center`}>
+      <div className={`${time} w-80 h-20 rounded-3xl absolute flex flex-col justify-center items-center`}>
+        <h1 className='text-3xl mb-10 text-white font-bold'>{context}</h1>
+        <button onClick={handleStar} className={`text-3xl font-medium btn w-64 h-full rounded-none-3xl btn-secondary`}>Tiếp tục</button>
+      </div>
+      <div className={`${time2} w-full h-20 rounded-3xl absolute flex flex-col justify-center items-center`}>
+        <span ref={el2} className='text-3xl text-center text-white font-bold'></span>
+        <div className='flex h-full w-2/6'>
+          <button onClick={handleStar1} className={`text-3xl m-8 h-full font-medium btn w-1/2 rounded-none-3xl btn-secondary`}>Oceee</button>
+          <button onClick={meme} className={`text-3xl m-8 h-full font-medium btn w-1/2 rounded-none-3xl btn-secondary`}>Nooooo</button>
+        </div>
+      </div>
+      <img src={memeimg} className={`w-96 ${mem}`} alt="" />
+      <div className={`bg-gradient ${theme} ${h} w-10/12 h-5/6 rounded-xl parent`}>
         <img src={bg} className="ballon-2"/>
         <div className="group-cloud">
-        
         <div className={`cloud1 ${cloud}`}></div>
         <div className={`cloud2 ${cloud}`}></div>
         <div className={`child ${cloud} opacity-95 flex flex-col`}>
@@ -194,9 +237,9 @@ function App() {
 
       </div>
 
-      <img src={firework} className="absolute firework" alt="" />  
-      <div className="main-day right-64 top-40 absolute text-red-700 drop-shadow-2xl text-5xl font-extrabold">12 : 06 : 2024</div>
-      <div className="cake-cf">
+      <img src={firework} className={`absolute ${h} firework`} alt="" />  
+      <div className={`main-day ${h} right-64 top-40 absolute text-red-700 drop-shadow-2xl text-5xl font-extrabold`}>12 : 06 : 2024</div>
+      <div className={`cake-cf ${h}`}>
         <img src={cake1} className="absolute w-60 bottom-32 cake" alt="" />
         <Toaster toastOptions={{
           style: {
@@ -206,15 +249,18 @@ function App() {
           }
         }}/>
       </div>
-      <div className="sticker">
+      <div className={`sticker ${h}`}>
         <img src={u1} className={`absolute w-60 bottom-32 u1 item-list ${dance}`} alt="" />
         <img src={u2} className={`absolute w-60 bottom-32 u2 item-list ${dance}`} alt="" />
         <img src={u3} className={`absolute w-60 bottom-32 u3 item-list ${dance}`} alt="" />
         <img src={u4} className={`absolute w-60 bottom-32 u4 item-list ${dance}`} alt="" />
         <img src={u5} className={`absolute w-60 bottom-32 u5 item-list ${dance}`} alt="" />
       </div>
-      <img src={content2} className={`absolute w-60 bottom-32 ${drop} content-2`} alt="" />
-        <div className="child3 ml-8">
+      <img src={bow} className={`absolute ${h} w-40 bow`} alt="" />
+      <img src={bow} className={`absolute ${h} w-40 bow1`} alt="" />
+      <img src={bow} className={`absolute ${h} w-40 bow2`} alt="" />
+      <img src={content2} className={`absolute ${h} w-60 bottom-32 ${drop} content-2`} alt="" />
+        <div className={`child3 ml-8 ${h}`}>
           <div className="flip-box">
             <div className="flip-box-inner">
               <div className="flip-box-front">
@@ -227,7 +273,7 @@ function App() {
           </div>
         </div>
 
-        <button className="absolute top-14  w-1/12 " onClick={handleToggle}>
+        <button className={`absolute top-14 ${h} w-1/12 `} onClick={handleToggle}>
           <img src={letter} ref={aniRef} onMouseLeave={handleRemoveOver} className='' onMouseOver={handleOver}  alt="" />
         </button>
 
