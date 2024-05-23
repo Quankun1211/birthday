@@ -36,7 +36,7 @@ function App() {
   const [idolTyped, setIdolTyped] = useState(true)
   const [starText, setStarText] = useState(true)
   const itemList = document.querySelectorAll('.item-list')
-  const [time, setTime] = useState('block')
+  const [time, setTime] = useState('hidden')
   const [mem, setMem] = useState('hidden')
   const [time2, setTime2] = useState('hidden')
   const [h, setH] = useState('hidden')
@@ -100,6 +100,12 @@ function App() {
     setTime2('hidden')
     setMem('block')
   }
+  const onpageLoad = () => {
+    setTimeout(() => {
+      setTime('')
+    }, 1000)
+  }
+  window.onload = onpageLoad
 
   useEffect(() => {
     const typed = new Typed(el.current, {
