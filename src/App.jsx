@@ -132,7 +132,7 @@ function App() {
   useEffect(() => {
     const typed = new Typed(el2.current, {
       strings: ['Cũng không biết làm gì nên làm cái này làm quà, nhận quà nhaa =))'],
-      typeSpeed: 100,
+      typeSpeed: 70,
       cursorChar: ''
     });
 
