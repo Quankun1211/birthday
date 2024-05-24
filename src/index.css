@@ -76,8 +76,8 @@ body{
   border-radius: 50%;
 }
 .bg-color{
-  background: linear-gradient(120deg, #a2181f, #ffc2ce);
-  opacity: 0.98;
+  background: linear-gradient(120deg, #e02d36, #ffc2ce);
+  opacity: 0.9;
 }
 .bg-color-2{
   background: linear-gradient(120deg, #0f0925, #170e37);
@@ -373,11 +373,18 @@ body{
 .bow1{
   right: 36%;
   top: 35%;
-  transform: rotate(150deg);
 }
 .bow2{
-  bottom:0;
+  bottom:15px;
   left: 50%;
+}
+.bow, .bow1, .bow2 {
+  animation: bow 2s infinite ease alternate;
+}
+@keyframes bow {
+  to {
+    transform: translateY(15px);
+  }
 }
 @-webkit-keyframes flash-1{
 	0%, 100%{
