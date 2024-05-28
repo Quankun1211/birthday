@@ -76,7 +76,11 @@ body{
   border-radius: 50%;
 }
 .bg-color{
-  background: linear-gradient(120deg, #e02d36, #ffc2ce);
+  /* background: linear-gradient(120deg, #e02d36, #ffc2ce); */
+  background: url(./assets/back.png);
+  background-repeat: no-repeat;
+  background-size: 100em;
+  background-color: rgb(255, 116, 169);
   opacity: 0.9;
 }
 .bg-color-2{
