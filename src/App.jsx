@@ -15,6 +15,8 @@ import letter from './assets/letter.png'
 import bow from './assets/bow.png'
 import memeimg from './assets/meme.png'
 import song from './audio/song.mp3'
+import error from './audio/error.mp3'
+import aww from './audio/aww.mp3'
 import Typed from 'typed.js'
 import { useEffect, useRef, useState } from "react"
 import $ from 'jquery'
@@ -43,6 +45,8 @@ function App() {
   const [h, setH] = useState('hidden')
 
   const audio = useRef()
+  const audio1 = useRef()
+  const audio2 = useRef()
   const noRef = useRef()
   const aniRef = useRef()
   const el = useRef(null)
@@ -107,6 +111,20 @@ function App() {
       setTime('')
     }, 1000)
   }
+  const handleSound1Play = () => {
+    audio1.current.src = aww
+    audio1.current.play()
+  }
+  const handleSound1Stop = () => {
+    audio1.current.src = null
+  }
+  const handleSound2Play = () => {
+    audio2.current.src = error
+    audio2.current.play()
+  }
+  const handleSound2Stop = () => {
+    audio2.current.src = null
+  }
   window.onload = onpageLoad
 
   useEffect(() => {
@@ -161,8 +179,8 @@ function App() {
       <div className={`${time2} w-full h-20 rounded-3xl absolute flex flex-col justify-center items-center`}>
         <span ref={el2} className='text-3xl text-center text-white font-bold'></span>
         <div className='flex h-full w-2/6'>
-          <button onClick={handleStar1} className={`text-3xl m-8 h-full font-medium btn w-1/2 rounded-none-3xl btn-secondary`}>Oceee</button>
-          <button onClick={meme} className={`text-3xl m-8 h-full font-medium btn w-1/2 rounded-none-3xl btn-secondary`}>Nooooo</button>
+          <button onMouseOver={handleSound1Play} onMouseLeave={handleSound1Stop} onClick={handleStar1} className={`text-3xl m-8 h-full font-medium btn w-1/2 rounded-none-3xl btn-secondary`}>Oceee</button>
+          <button onMouseOver={handleSound2Play} onMouseLeave={handleSound2Stop} onClick={meme} className={`text-3xl m-8 h-full font-medium btn w-1/2 rounded-none-3xl btn-secondary`}>Nooooo</button>
         </div>
       </div>
       <img src={memeimg} className={`w-96 ${mem}`} alt="" />
@@ -286,6 +304,8 @@ function App() {
         </button>
 
         <audio ref={audio} src={song}></audio>
+        <audio ref={audio1} src={aww}></audio>
+        <audio ref={audio2} src={error}></audio>
         <dialog id="my_modal_5" className="modal">
           <div className="modal-box w-11/12 max-w-5xl relative">
               <h1 className="text-center text-3xl font-mono font-extrabold">HAPPY BIRTHDAY HA VYYY !!</h1>
