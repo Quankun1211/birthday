@@ -19,7 +19,6 @@ import error from './audio/error.mp3'
 import aww from './audio/aww.mp3'
 import Typed from 'typed.js'
 import { useEffect, useRef, useState } from "react"
-import $ from 'jquery'
 import toast, { Toaster } from 'react-hot-toast'
 
 function App() {
@@ -140,7 +139,7 @@ function App() {
 
   useEffect(() => {
     const typed = new Typed(el1.current, {
-      strings: ['안녕하세요 Im Sol Vy. 저는 Ryu Sun Jae (Byun Woo Seok)입니다. 생일 축하해요 !! </br> (Chào Im Sol Vy, anh là Ryu Sun Jae (Byun Woo Seok). Chúc em sinh nhật vui vẻ nhé !!!)'],
+      strings: ['안녕하세요 Sol Vy. 저는 Ryu Sun Jae (Byun Woo Seok)입니다. 생일 축하해요 !! </br> (Sol Vy ahhh, anh là Ryu Sun Jae (Byun Woo Seok). Chúc em sinh nhật vui vẻ nhé !!!)'],
       typeSpeed: 100,
     });
 
