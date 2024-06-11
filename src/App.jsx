@@ -15,6 +15,7 @@ import letter from './assets/letter.png'
 import bow from './assets/bow.png'
 import memeimg from './assets/meme.png'
 import song from './audio/song.mp3'
+import ost from './audio/ost.mp4'
 import error from './audio/error.mp3'
 import aww from './audio/aww.mp3'
 import Typed from 'typed.js'
@@ -42,10 +43,12 @@ function App() {
   const [mem, setMem] = useState('hidden')
   const [time2, setTime2] = useState('hidden')
   const [h, setH] = useState('hidden')
+  const [ostMus, setOstMus] = useState(true)
 
   const audio = useRef()
   const audio1 = useRef()
   const audio2 = useRef()
+  const audio3 = useRef()
   const noRef = useRef()
   const aniRef = useRef()
   const el = useRef(null)
@@ -90,7 +93,14 @@ function App() {
   }
   const idolText = () => {
     setChatalbe(chatable === 'hidden' ? 'fixed' : 'hidden')
+    audio.current.pause()
+    chatable === 'hidden' ? audio3.current.play() : audio3.current.pause()
+    setOstMus(!ostMus)
     setIdolTyped(!idolTyped)
+  }
+  const handleClose = () => {
+    audio3.current.pause()
+    setChatalbe('hidden')
   }
   const handleStar = () => {
     setTime('hidden')
@@ -303,6 +313,7 @@ function App() {
         </button>
 
         <audio ref={audio} src={song}></audio>
+        <audio ref={audio3} loop src={ost}></audio>
         <audio ref={audio1} src={aww}></audio>
         <audio ref={audio2} src={error}></audio>
         <dialog id="my_modal_5" className="modal">
@@ -321,7 +332,7 @@ function App() {
 
               <div className="modal-action close absolute">
                 <form method="dialog">
-                  <button className="btn btn-secondary w-24 text-xl">Close</button>
+                  <button onClick={handleClose} className="btn btn-secondary w-24 text-xl">Close</button>
                 </form>
               </div>
                
